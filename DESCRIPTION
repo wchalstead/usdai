@@ -4,13 +4,12 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Wesley", "Halstead",
+      email = "wesley.halstead@tamu.edu",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Methods for conducting dimension agnostic inference using cross U-Statistics.
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
