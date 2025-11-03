@@ -2,12 +2,12 @@
 # <To-Do> Implement in C++
 
 
-# Calculate value $\widetilde \theta_{(m+1):k}$ given as
+# crossUStatL4 calculates the value $\widetilde \theta_{(m+1):k}$, an estimate of the l4-norm using cross U-statistics, given as
 # $$\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\left(\sum_{l = 1}^pX_{i_1,l}X_{i_2,l}X_{i_{3},l}X_{j,l}\right).$$
-# crossUStatL4 calculates an estimate of the l4-norm using cross U-statistics
 # X is nxp matrix
 # m is integer cross "threshold" value
 # Works since we can exchange the summations and use Newton's identities for symmetric polynomials
+# <To-Do> Add input checks
 crossUStatL4 <- function(X, m) {
   X <- as.matrix(X)
   n <- nrow(X)
