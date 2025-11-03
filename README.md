@@ -12,11 +12,9 @@ dimension $`d`$ remain constant as the sample size $`n`$ grows. `usdai`
 provides methods for conducting hypothesis tests about the mean and
 variance of high-dimension datasets in absence of this assumption,
 requiring no prior knowledge of the behavior of $`d`$ as $`n`$ goes to
-infinity.
-
-For more information on cross U-statistics, see Kim and Ramdas (2024).
-For more information on the self-normalization process, see Wang and
-Shao (2020) and Shao (2015).
+infinity. This testing procedure is based on the self-normalized (Wang
+and Shao 2020; Shao 2015) cross U-statistic (Kim and Ramdas 2024) which
+has a known asymptotic distribution described in Lobato (2001).
 
 ## Installation
 
@@ -46,6 +44,14 @@ entry-spacing="0">
 
 Kim, Ilmun, and Aaditya Ramdas. 2024. “Dimension-Agnostic Inference
 Using Cross u-Statistics.” *Bernoulli* 30 (1): 683–711.
+
+</div>
+
+<div id="ref-lobato2001testing" class="csl-entry">
+
+Lobato, Ignacio N. 2001. “Testing That a Dependent Process Is
+Uncorrelated.” *Journal of the American Statistical Association* 96
+(455): 1066–76.
 
 </div>
 
