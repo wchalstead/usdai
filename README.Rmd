@@ -19,7 +19,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Typical asymptotic theory for hypothesis testing requires that our dimension $d$ remain constant as the sample size $n$ grows. `usdai` provides methods for conducting hypothesis tests about the mean and variance of high-dimension datasets in absence of this assumption, requiring no prior knowledge of the behavior of $d$ as $n$ goes to infinity. This testing procedure is based on the self-normalized [@wang2020hypothesis; @shao2015self] cross U-statistic [@kim2024dimension] which has a known asymptotic distribution described in @lobato2001testing.
+Typical asymptotic theory for hypothesis testing requires that our dimension $d$ remain constant as the sample size $n$ grows. `usdai` provides methods for conducting hypothesis tests about the mean and variance of high-dimension datasets in absence of this assumption, requiring no prior knowledge of the behavior of $d$ as $n$ goes to infinity.
+
+This testing procedure is based on the self-normalized cross U-statistic--- see @wang2020hypothesis and @shao2015self for descriptions of the self-normalization process and  @kim2024dimension for description of the cross U-statistic--- whose asymptotic density is plotted in @lobato2001testing.
 
 ## Installation
 

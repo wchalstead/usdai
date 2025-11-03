@@ -12,9 +12,13 @@ dimension $`d`$ remain constant as the sample size $`n`$ grows. `usdai`
 provides methods for conducting hypothesis tests about the mean and
 variance of high-dimension datasets in absence of this assumption,
 requiring no prior knowledge of the behavior of $`d`$ as $`n`$ goes to
-infinity. This testing procedure is based on the self-normalized (Wang
-and Shao 2020; Shao 2015) cross U-statistic (Kim and Ramdas 2024) which
-has a known asymptotic distribution described in Lobato (2001).
+infinity.
+
+This testing procedure is based on the self-normalized cross
+U-statistic— see Wang and Shao (2020) and Shao (2015) for descriptions
+of the self-normalization process and Kim and Ramdas (2024) for
+description of the cross U-statistic— whose asymptotic density is
+plotted in Lobato (2001).
 
 ## Installation
 
