@@ -13,3 +13,4 @@ Description: Implementation of methods for calculating cross U-Statistics based 
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.3
