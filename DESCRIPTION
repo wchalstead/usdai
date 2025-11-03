@@ -9,7 +9,7 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Implementation of methods for calculating cross U-Statistics based on the l4-norm and variance. These statistics provide a method for conducting hypothesis testing that is agnostic to the dimension of our data.
+Description: Typical asymptotic theory for hypothesis testing requires that our dimension d remains constant as the sample size n grows. usdai provides methods for conducting hypothesis tests about the mean and variance of high-dimension datasets in absence of this assumption, requiring no prior knowledge of the behavior of d as n goes to infinity.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
