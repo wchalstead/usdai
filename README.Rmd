@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: ref.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -18,7 +19,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Typical asymptotic theory for hypothesis testing requires that our dimension $d$ remains constant as the sample size $n$ grows. `usdai` provides methods for conducting hypothesis tests about the mean and variance of high-dimension datasets in absence of this assumption, requiring no prior knowledge of the behavior of $d$ as $n$ goes to infinity.
+Typical asymptotic theory for hypothesis testing requires that our dimension $d$ remain constant as the sample size $n$ grows. `usdai` provides methods for conducting hypothesis tests about the mean and variance of high-dimension datasets in absence of this assumption, requiring no prior knowledge of the behavior of $d$ as $n$ goes to infinity.
+
+For more information on cross U-statistics, see @kim2024dimension. For more information on the self-normalization process, see @wang2020hypothesis and @shao2015self.
 
 ## Installation
 
@@ -37,3 +40,5 @@ This is a basic example which shows you how to solve a common problem:
 library(usdai)
 ## basic example code
 ```
+
+## References
