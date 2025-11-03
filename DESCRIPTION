@@ -1,6 +1,6 @@
 Package: usdai
 Type: Package
-Title: What the Package Does (Title Case)
+Title: U-Statistic Based Dimension Agnostic Inference
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -9,7 +9,7 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Methods for conducting dimension agnostic inference using cross U-Statistics.
+Description: Implementation of methods for calculating cross U-Statistics based on the l4-norm and variance. These statistics provide a method for conducting hypothesis testing that is agnostic to the dimension of our data.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
