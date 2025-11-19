@@ -41,4 +41,7 @@ library(usdai)
 ## basic example code
 ```
 
+## To-Do
+I would like to move my current code to C++ to improve the computation time and add some basic tests to make sure that my computations are still correct as I transfer my code over. A final thing that I would like to add is a function to simulate random variables from the asymptotic distribution, but I will likely need to do some testing to decide if it is more efficient to try and generate these by generating a uniform random variable on (0, 1) and passing this as a function to some pre-computed set of quantiles or finding a way to efficiently integrate over a random process.
+
 ## References
