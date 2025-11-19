@@ -60,3 +60,21 @@ crossUStatL4_cum <- function(X, m) {
   cumsum(dot_vals)
 }
 
+# Calculate self-normalized value using cumulative stats
+# X is nxp matrix
+# m is integer cross "threshold" value
+crossWStatL4 <- function(X, m){
+  n <- nrow(X)
+
+  # Calculate cumulative stats
+  cumstats <- crossUStatL4_cum(X,m)
+
+  # Theta estimate is the final value of all the cumulative terms
+  theta <- cumstats[n-m]
+
+  # Calculate self-normalizer
+  V <- sum((cumstats - (((m+1):n) - m) * cumstats[n-m]/(n - m))^2) / (n - m)
+
+  # Retrun theta^2/v
+  return(theta^2/V)
+}
