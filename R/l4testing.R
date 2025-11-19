@@ -28,3 +28,35 @@ crossUStatL4 <- function(X, m) {
 
   return(result)
 }
+
+# Cumulative value of l4 norm estimates as j goes from m+1, ..., n
+# X is nxp matrix
+# m is integer cross "threshold" value
+# Function for calculating cumulative L4 cross stats
+# Returns R^(n - m) vector of estimates for each j in (m+1, ..., n)
+crossUStatL4_cum <- function(X, m) {
+  X <- as.matrix(X)
+  n <- nrow(X)
+  p <- ncol(X)
+
+  # First m rows
+  Xm <- X[1:m, , drop = FALSE]
+
+  # Power sums across the first m rows
+  p1 <- colSums(Xm)
+  p2 <- colSums(Xm^2)
+  p3 <- colSums(Xm^3)
+
+  # e3 (third elementary symmetric polynomial)
+  e3 <- (p1^3 - 3*p1*p2 + 2*p3) / 6
+
+  # Rows after m
+  lastX <- X[(m+1):n, , drop = FALSE]
+
+  # Compute dot products: each row with e3
+  dot_vals <- as.vector(lastX %*% e3)
+
+  # Cumulative sum
+  cumsum(dot_vals)
+}
+
