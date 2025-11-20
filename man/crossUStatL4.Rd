@@ -20,6 +20,9 @@ The cross U-Statistic for the \eqn{\ell_4}-norm calculated as \deqn{
 The Cross U-Statistic for \eqn{\ell_4} Norm Testing
 }
 \examples{
+set.seed(12)
+# Generate Data
 data <- matrix(rnorm(100 * 2), 100, 2)
+# Calculate U-Statistic
 crossUStatL4(data, 50)
 }

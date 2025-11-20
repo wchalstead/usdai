@@ -18,7 +18,10 @@
 #' @export
 #'
 #' @examples
+#' set.seed(12)
+#' # Generate Data
 #' data <- matrix(rnorm(100 * 2), 100, 2)
+#' # Calculate U-Statistic
 #' crossUStatL4(data, 50)
 crossUStatL4 <- function(data, m) {
 
