@@ -14,11 +14,11 @@ crossUStatL4 <- function(X, m) {
   n <- nrow(X)
   p <- ncol(X)
 
-  if (m > n){
+  # Check inputs
+  if (m > n) {
     stop("m must be less than the number of rows in X")
   }
-
-  if (m < 3){
+  if (m < 3) {
     stop("m must be greater than 3")
   }
 
@@ -47,6 +47,14 @@ crossUStatL4_cum <- function(X, m) {
   X <- as.matrix(X)
   n <- nrow(X)
   p <- ncol(X)
+
+  # Check inputs
+  if (m > n) {
+    stop("m must be less than the number of rows in X")
+  }
+  if (m < 3) {
+    stop("m must be greater than 3")
+  }
 
   # First m rows
   Xm <- X[1:m, , drop = FALSE]
