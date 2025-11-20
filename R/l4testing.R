@@ -7,7 +7,19 @@
 # X is nxp matrix
 # m is integer cross "threshold" value
 # Works since we can exchange the summations and use Newton's identities for symmetric polynomials
-# <To-Do> Add input checks
+#' Title
+#'
+#' @param X \eqn{n \times p} matrix of data.
+#' @param m  Cross threshold value. Should be between 3 and \eqn{n}.
+#'
+#' @returns The cross U-Statistic for the \eqn{\ell_4}-norm calculated as \deqn{
+#' \widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\left(\sum_{l = 1}^pX_{i_1,l}X_{i_2,l}X_{i_{3},l}X_{j,l}\right)
+#' }
+#' @export
+#'
+#' @examples
+#' X <- matrix(rnorm(100 * 2), 100, 2)
+#' crossUStatL4(X, 50)
 crossUStatL4 <- function(X, m) {
 
   X <- as.matrix(X)
@@ -18,8 +30,11 @@ crossUStatL4 <- function(X, m) {
   if (m > n) {
     stop("m must be less than the number of rows in X")
   }
-  if (m < 3) {
-    stop("m must be greater than 3")
+  if (m < 2) {
+    stop("m must be greater than or equal to 3")
+  }
+  if (m %% 1 != 0) {
+    stop("m must be an integer value")
   }
 
   Xm <- X[1:m, , drop = F]
@@ -52,8 +67,11 @@ crossUStatL4_cum <- function(X, m) {
   if (m > n) {
     stop("m must be less than the number of rows in X")
   }
-  if (m < 3) {
-    stop("m must be greater than 3")
+  if (m < 2) {
+    stop("m must be greater than or equal to 3")
+  }
+  if (m %% 1 != 0) {
+    stop("m must be an integer value")
   }
 
   # First m rows
