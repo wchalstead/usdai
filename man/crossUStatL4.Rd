@@ -2,12 +2,12 @@
 % Please edit documentation in R/l4testing.R
 \name{crossUStatL4}
 \alias{crossUStatL4}
-\title{Title}
+\title{The Cross U-Statistic for \eqn{\ell_4} Norm Testing}
 \usage{
-crossUStatL4(X, m)
+crossUStatL4(data, m)
 }
 \arguments{
-\item{X}{\eqn{n \times p} matrix of data.}
+\item{data}{\eqn{n \times p} matrix of data.}
 
 \item{m}{Cross threshold value. Should be between 3 and \eqn{n}.}
 }
@@ -17,9 +17,9 @@ The cross U-Statistic for the \eqn{\ell_4}-norm calculated as \deqn{
 }
 }
 \description{
-Title
+The Cross U-Statistic for \eqn{\ell_4} Norm Testing
 }
 \examples{
-X <- matrix(rnorm(100 * 2), 100, 2)
-crossUStatL4(X, 50)
+data <- matrix(rnorm(100 * 2), 100, 2)
+crossUStatL4(data, 50)
 }

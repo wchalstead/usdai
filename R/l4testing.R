@@ -4,12 +4,12 @@
 
 # crossUStatL4 calculates the value $\widetilde \theta_{(m+1):k}$, an estimate of the l4-norm using cross U-statistics, given as
 # $$\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\left(\sum_{l = 1}^pX_{i_1,l}X_{i_2,l}X_{i_{3},l}X_{j,l}\right).$$
-# X is nxp matrix
+# data is nxp matrix
 # m is integer cross "threshold" value
 # Works since we can exchange the summations and use Newton's identities for symmetric polynomials
-#' Title
+#' The Cross U-Statistic for \eqn{\ell_4} Norm Testing
 #'
-#' @param X \eqn{n \times p} matrix of data.
+#' @param data \eqn{n \times p} matrix of data.
 #' @param m  Cross threshold value. Should be between 3 and \eqn{n}.
 #'
 #' @returns The cross U-Statistic for the \eqn{\ell_4}-norm calculated as \deqn{
@@ -18,17 +18,17 @@
 #' @export
 #'
 #' @examples
-#' X <- matrix(rnorm(100 * 2), 100, 2)
-#' crossUStatL4(X, 50)
-crossUStatL4 <- function(X, m) {
+#' data <- matrix(rnorm(100 * 2), 100, 2)
+#' crossUStatL4(data, 50)
+crossUStatL4 <- function(data, m) {
 
-  X <- as.matrix(X)
-  n <- nrow(X)
-  p <- ncol(X)
+  data <- as.matrix(data)
+  n <- nrow(data)
+  p <- ncol(data)
 
   # Check inputs
   if (m > n) {
-    stop("m must be less than the number of rows in X")
+    stop("m must be less than the number of rows in data")
   }
   if (m < 2) {
     stop("m must be greater than or equal to 3")
@@ -37,7 +37,7 @@ crossUStatL4 <- function(X, m) {
     stop("m must be an integer value")
   }
 
-  Xm <- X[1:m, , drop = F]
+  Xm <- data[1:m, , drop = F]
 
   # Power sums across the first m rows
   p1 <- colSums(Xm)
@@ -48,24 +48,24 @@ crossUStatL4 <- function(X, m) {
   e3 <- (p1^3 - 3*p1*p2 + 2*p3) / 6
 
   # Sum over last term j = m+1, ..., n
-  result <- sum(colSums(X[(m+1):n, , drop = F]) * e3)
+  result <- sum(colSums(data[(m+1):n, , drop = F]) * e3)
 
   return(result)
 }
 
 # Cumulative value of l4 norm estimates as j goes from m+1, ..., n
-# X is nxp matrix
+# data is nxp matrix
 # m is integer cross "threshold" value
 # Function for calculating cumulative L4 cross stats
 # Returns R^(n - m) vector of estimates for each j in (m+1, ..., n)
-crossUStatL4_cum <- function(X, m) {
-  X <- as.matrix(X)
-  n <- nrow(X)
-  p <- ncol(X)
+crossUStatL4_cum <- function(data, m) {
+  data <- as.matrix(data)
+  n <- nrow(data)
+  p <- ncol(data)
 
   # Check inputs
   if (m > n) {
-    stop("m must be less than the number of rows in X")
+    stop("m must be less than the number of rows in data")
   }
   if (m < 2) {
     stop("m must be greater than or equal to 3")
@@ -75,7 +75,7 @@ crossUStatL4_cum <- function(X, m) {
   }
 
   # First m rows
-  Xm <- X[1:m, , drop = FALSE]
+  Xm <- data[1:m, , drop = FALSE]
 
   # Power sums across the first m rows
   p1 <- colSums(Xm)
@@ -86,7 +86,7 @@ crossUStatL4_cum <- function(X, m) {
   e3 <- (p1^3 - 3*p1*p2 + 2*p3) / 6
 
   # Rows after m
-  lastX <- X[(m+1):n, , drop = FALSE]
+  lastX <- data[(m+1):n, , drop = FALSE]
 
   # Compute dot products: each row with e3
   dot_vals <- as.vector(lastX %*% e3)
@@ -96,13 +96,13 @@ crossUStatL4_cum <- function(X, m) {
 }
 
 # Calculate self-normalized value using cumulative stats
-# X is nxp matrix
+# data is nxp matrix
 # m is integer cross "threshold" value
-crossWStatL4 <- function(X, m){
-  n <- nrow(X)
+crossWStatL4 <- function(data, m){
+  n <- nrow(data)
 
   # Calculate cumulative stats
-  cumstats <- crossUStatL4_cum(X,m)
+  cumstats <- crossUStatL4_cum(data,m)
 
   # Theta estimate is the final value of all the cumulative terms
   theta <- cumstats[n-m]
