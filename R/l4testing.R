@@ -9,9 +9,18 @@
 # Works since we can exchange the summations and use Newton's identities for symmetric polynomials
 # <To-Do> Add input checks
 crossUStatL4 <- function(X, m) {
+
   X <- as.matrix(X)
   n <- nrow(X)
   p <- ncol(X)
+
+  if (m > n){
+    stop("m must be less than the number of rows in X")
+  }
+
+  if (m < 3){
+    stop("m must be greater than 3")
+  }
 
   Xm <- X[1:m, , drop = F]
 
