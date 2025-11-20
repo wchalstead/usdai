@@ -79,3 +79,66 @@ crossUStatVar <- function(X, m, Sigma) {
   return(stat / 4)
 }
 
+
+# Version to give cumulative stats over time
+# X nxp matrix of data
+# m is integer cross "threshold" value
+# Function for calculating cumulative matrix difference norm cross stats
+# Returns R^(n - m) vector of estimates for each j in (m+1, ..., n)
+crossUStatVar_cum <- function(X, m, Sigma) {
+  n <- nrow(X)
+  p <- ncol(X)
+  nm <- n - m
+  q <- p * (p + 1) / 2  # number of unique entries in symmetric matrix
+
+  # helper: flatten symmetric matrix with sqrt(2) scaling
+  sym_flat <- function(M) {
+    ut <- upper.tri(M)
+    M[ut] <- M[ut] * sqrt(2)
+    M[upper.tri(M, diag = TRUE)]
+  }
+
+  # Step 1: Precompute A_{i1,i2}
+  twopairs <- combn(m-1, 2)
+  n_two <- ncol(twopairs)
+  A <- matrix(0, q, n_two)
+  for (i in seq_len(n_two)) {
+    diff_vec <- X[twopairs[1, i], ] - X[twopairs[2, i], ]
+    M <- tcrossprod(diff_vec) - Sigma
+    A[, i] <- sym_flat(M)
+  }
+
+  # Step 2: Precompute B_{i3,j}
+  i3_seq <- 3:m
+  n_i3 <- length(i3_seq)
+  B <- array(0, dim = c(q, n_i3, nm))
+
+  for (t in seq_along(i3_seq)) {
+    i3 <- i3_seq[t]
+    for (j_idx in seq_len(nm)) {
+      j <- m + j_idx
+      diff_vec <- X[i3, ] - X[j, ]
+      M <- tcrossprod(diff_vec) - Sigma
+      B[, t, j_idx] <- sym_flat(M)
+    }
+  }
+
+  # Step 3: Compute cumulative statistic
+  results <- numeric(nm)
+  cumB <- matrix(0, q, n_i3)
+
+
+  for (j_idx in seq_len(nm)) {
+    cumB <- cumB + B[, , j_idx]
+    total_sum <- 0
+    for (i in seq_len(n_two)) {
+      valid_i3 <- which(i3_seq > twopairs[2, i])
+      if (length(valid_i3) > 0) {
+        total_sum <- total_sum + sum(A[, i] * rowSums(cumB[, valid_i3, drop = FALSE]))
+      }
+    }
+    results[j_idx] <- total_sum
+  }
+
+  return(results/4)
+}
