@@ -142,3 +142,18 @@ crossUStatVar_cum <- function(X, m, Sigma) {
 
   return(results/4)
 }
+
+
+
+# Calculate normalized W stat using cumulative stats
+crossWStatVar <- function(X, m, Sigma){
+  n <- nrow(X)
+
+  # Calculate cumulative stats
+  cumstats <- crossUStatVar_cum(X, m, Sigma)
+  theta <- cumstats[n-m]
+
+  # Calculate self-normalizer
+  V <- sum((cumstats - (((m+1):n) - m) * cumstats[n-m]/(n - m))^2) / (n - m)
+  return(theta^2/V)
+}
