@@ -30,21 +30,6 @@ You can install the development version of usdai from
 devtools::install_github("wchalstead/usdai")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(usdai)
-## basic example code
-set.seed(12)
-# Generate Data
-data <- matrix(rnorm(100 * 2), 100, 2)
-# Calculate U-Statistic
-crossUStatL4(data, 50)
-#> [1] 346.6365
-```
-
 ## To-Do
 
 I would like to move my current code to C++ to improve the computation
@@ -57,6 +42,22 @@ some testing to decide if it is more efficient to try and generate these
 by generating a uniform random variable on (0, 1) and passing this as a
 function to some pre-computed set of quantiles or finding a way to
 efficiently integrate over a random process.
+
+## Example
+
+<To-Do> Expand on this once all other functions are fully implemented.
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(usdai)
+## basic example code
+set.seed(12)
+# Generate Data
+data <- matrix(rnorm(100 * 2), 100, 2)
+# Calculate U-Statistic
+crossUStatL4(data, 50)
+#> [1] 346.6365
+```
 
 ## References
 
