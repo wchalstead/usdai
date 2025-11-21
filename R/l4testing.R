@@ -101,6 +101,15 @@ crossUStatL4_cum <- function(data, m) {
 # Calculate self-normalized value using cumulative stats
 # data is nxp matrix
 # m is integer cross "threshold" value
+#' Title
+#'
+#' @param data
+#' @param m
+#'
+#' @returns
+#' @export
+#'
+#' @examples
 crossWStatL4 <- function(data, m){
   n <- nrow(data)
 
