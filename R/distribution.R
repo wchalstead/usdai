@@ -11,9 +11,9 @@ qcrossW <- function(p){
     } else if (p == 0) {
       return(0)
     } else {
-    return(quantile(DATASET, p))
+    return(quantile(DATASET, p, names = FALSE))
     }}
   )
 
-  return(unname(results))
+  return(results)
 }
