@@ -39,10 +39,14 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(usdai)
 ## basic example code
-
+set.seed(12)
+# Generate Data
+data <- matrix(rnorm(100 * 2), 100, 2)
+# Calculate U-Statistic
+crossUStatL4(data, 50)
 ```
 
 ## To-Do
-I would like to move my current code to C++ to improve the computation time while implementing basic tests to make sure that my computations are still correct as I transfer my code over. Another priority is finishing all of my documentation. A final thing that I would like to add is a function to simulate random variables from the asymptotic distribution, but I will likely need to do some testing to decide if it is more efficient to try and generate these by generating a uniform random variable on (0, 1) and passing this as a function to some pre-computed set of quantiles or finding a way to efficiently integrate over a random process.
+I would like to move my current code to C++ to improve the computation time while implementing basic tests to make sure that my computations are still correct as I transfer my code over. Another priority is finishing all of the documentation for my exported functions. A final thing that I would like to add is a function to simulate random variables from the asymptotic distribution, but I will likely need to do some testing to decide if it is more efficient to try and generate these by generating a uniform random variable on (0, 1) and passing this as a function to some pre-computed set of quantiles or finding a way to efficiently integrate over a random process.
 
 ## References
