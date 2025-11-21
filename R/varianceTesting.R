@@ -1,10 +1,20 @@
 # Variance testing test statistic
-# X nxp matrix of data
+# data nxp matrix of data
 # m is integer cross "threshold" value
 # Sigma is null hypothesis covariance matrix
-crossUStatVar <- function(X, m, Sigma) {
-  X <- as.matrix(X)
-  n <- nrow(X); p <- ncol(X)
+#' Title
+#'
+#' @param data
+#' @param m
+#' @param Sigma
+#'
+#' @returns
+#' @export
+#'
+#' @examples
+crossUStatVar <- function(data, m, Sigma) {
+  data <- as.matrix(data)
+  n <- nrow(data); p <- ncol(data)
   if (m < 3) stop("m must be >= 3")
   if (n <= m) stop("need n > m")
   Sigma <- (Sigma + t(Sigma)) / 2
@@ -20,7 +30,7 @@ crossUStatVar <- function(X, m, Sigma) {
   twopairs <- combn(m - 1, 2)
   npairs <- ncol(twopairs)
   # compute difference vectors d = x_i1 - x_i2 for each pair
-  D12 <- X[twopairs[1, ], , drop = FALSE] - X[twopairs[2, ], , drop = FALSE]  # npairs x p
+  D12 <- data[twopairs[1, ], , drop = FALSE] - data[twopairs[2, ], , drop = FALSE]  # npairs x p
 
   # Flattened A matrices (one row per pair), flattened upper-tri and weighted
   # A_pair = tcrossprod(d) - Sigma ; flattened and multiplied by w_flat_sqrt
@@ -40,7 +50,7 @@ crossUStatVar <- function(X, m, Sigma) {
   for (idx in seq_len(n_i3)) {
     i3 <- i3_vals[idx]
     # D matrix of differences: rows are j in (m+1):n
-    D <- sweep(X[rows_j, , drop = FALSE], 2, X[i3, ], "-")  # (n-m) x p
+    D <- sweep(data[rows_j, , drop = FALSE], 2, data[i3, ], "-")  # (n-m) x p
     # sum_j tcrossprod(d_j) = t(D) %*% D  (p x p)
     S_mat <- crossprod(D)        # crossprod(D) == t(D) %*% D
     # subtract Sigma for each j: sum_j Sigma = (n-m) * Sigma
@@ -81,13 +91,13 @@ crossUStatVar <- function(X, m, Sigma) {
 
 
 # Version to give cumulative stats over time
-# X nxp matrix of data
+# data nxp matrix of data
 # m is integer cross "threshold" value
 # Function for calculating cumulative matrix difference norm cross stats
 # Returns R^(n - m) vector of estimates for each j in (m+1, ..., n)
-crossUStatVar_cum <- function(X, m, Sigma) {
-  n <- nrow(X)
-  p <- ncol(X)
+crossUStatVar_cum <- function(data, m, Sigma) {
+  n <- nrow(data)
+  p <- ncol(data)
   nm <- n - m
   q <- p * (p + 1) / 2  # number of unique entries in symmetric matrix
 
@@ -103,7 +113,7 @@ crossUStatVar_cum <- function(X, m, Sigma) {
   n_two <- ncol(twopairs)
   A <- matrix(0, q, n_two)
   for (i in seq_len(n_two)) {
-    diff_vec <- X[twopairs[1, i], ] - X[twopairs[2, i], ]
+    diff_vec <- data[twopairs[1, i], ] - data[twopairs[2, i], ]
     M <- tcrossprod(diff_vec) - Sigma
     A[, i] <- sym_flat(M)
   }
@@ -117,7 +127,7 @@ crossUStatVar_cum <- function(X, m, Sigma) {
     i3 <- i3_seq[t]
     for (j_idx in seq_len(nm)) {
       j <- m + j_idx
-      diff_vec <- X[i3, ] - X[j, ]
+      diff_vec <- data[i3, ] - data[j, ]
       M <- tcrossprod(diff_vec) - Sigma
       B[, t, j_idx] <- sym_flat(M)
     }
@@ -146,11 +156,21 @@ crossUStatVar_cum <- function(X, m, Sigma) {
 
 
 # Calculate normalized W stat using cumulative stats
-crossWStatVar <- function(X, m, Sigma){
-  n <- nrow(X)
+#' Title
+#'
+#' @param data
+#' @param m
+#' @param Sigma
+#'
+#' @returns
+#' @export
+#'
+#' @examples
+crossWStatVar <- function(data, m, Sigma){
+  n <- nrow(data)
 
   # Calculate cumulative stats
-  cumstats <- crossUStatVar_cum(X, m, Sigma)
+  cumstats <- crossUStatVar_cum(data, m, Sigma)
   theta <- cumstats[n-m]
 
   # Calculate self-normalizer
