@@ -45,7 +45,7 @@ efficiently integrate over a random process.
 
 ## Example
 
-<To-Do> Expand on this once all other functions are fully implemented.
+To-Do: Expand on this once all other functions are fully implemented.
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
