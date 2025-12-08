@@ -2,6 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 crossUStatL4_c <- function(X, m) {
-    .Call('_usdai_crossUStatL4_c', PACKAGE = 'usdai', X, m)
+    .Call(`_usdai_crossUStatL4_c`, X, m)
+}
+
+crossUStatL4_cum_c <- function(X, m) {
+    .Call(`_usdai_crossUStatL4_cum_c`, X, m)
 }
 
