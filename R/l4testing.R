@@ -40,18 +40,7 @@ crossUStatL4 <- function(data, m) {
     stop("m must be an integer value")
   }
 
-  Xm <- data[1:m, , drop = F]
-
-  # Power sums across the first m rows
-  p1 <- colSums(Xm)
-  p2 <- colSums(Xm^2)
-  p3 <- colSums(Xm^3)
-
-  # e3 (third elementary symmetric polynomial)
-  e3 <- (p1^3 - 3*p1*p2 + 2*p3) / 6
-
-  # Sum over last term j = m+1, ..., n
-  result <- sum(colSums(data[(m+1):n, , drop = F]) * e3)
+  result <- crossUStatL4_c(data, m)
 
   return(result)
 }
