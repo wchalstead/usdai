@@ -50,6 +50,7 @@ arma::vec crossUStatL4_cum_c(const arma::mat& X,
 }
 
 
+// Calculate self-normalized value using cumulative stats
 // [[Rcpp::export]]
 double crossWStatL4_c(const arma::mat& X,
                       int m){

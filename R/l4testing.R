@@ -45,6 +45,8 @@ crossUStatL4 <- function(data, m) {
   return(result)
 }
 
+
+
 # Calculate self-normalized value using cumulative stats
 # data is nxp matrix
 # m is integer cross "threshold" value
@@ -70,17 +72,21 @@ crossUStatL4 <- function(data, m) {
 #' # Calculate U-Statistic
 #' crossWStatL4(data, 50)
 crossWStatL4 <- function(data, m){
+
+  data <- as.matrix(data)
   n <- nrow(data)
+  p <- ncol(data)
 
-  # Calculate cumulative stats
-  cumstats <- crossUStatL4_cum(data,m)
+  # Check inputs
+  if (m > n) {
+    stop("m must be less than the number of rows in data")
+  }
+  if (m < 2) {
+    stop("m must be greater than or equal to 3")
+  }
+  if (m %% 1 != 0) {
+    stop("m must be an integer value")
+  }
 
-  # Theta estimate is the final value of all the cumulative terms
-  theta <- cumstats[n-m]
-
-  # Calculate self-normalizer
-  V <- sum((cumstats - (((m+1):n) - m) * cumstats[n-m]/(n - m))^2) / (n - m)
-
-  # Retrun theta^2/v
-  return(theta^2/V)
+  return(crossUStatL4_cum_c(data, m))
 }
