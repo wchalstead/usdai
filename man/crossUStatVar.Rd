@@ -15,7 +15,7 @@ crossUStatVar(data, m, Sigma)
 }
 \value{
 The Cross U-Statistic for Variance Testing defined as \deqn{
-\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\sum_{l_1,l_2 = 1}^p\frac{1}{4}[(X_{i_1,l_1} - X_{i_2,l_1})&(X_{i_1,l_2} - X_{i_2,l_2}) - 2\Sigma_0(l_1,l_2)]\\ &\cdot [(X_{i_3,l_1} - X_{j,l_1})(X_{i_3,l_2} - X_{j,l_2}) - 2\Sigma_0(l_1,l_2)].
+\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\sum_{l_1,l_2 = 1}^p\frac{1}{4}[(X_{i_1,l_1} - X_{i_2,l_1})(X_{i_1,l_2} - X_{i_2,l_2}) - 2\Sigma_0(l_1,l_2)] [(X_{i_3,l_1} - X_{j,l_1})(X_{i_3,l_2} - X_{j,l_2}) - 2\Sigma_0(l_1,l_2)].
 }
 }
 \description{
