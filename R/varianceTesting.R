@@ -2,16 +2,23 @@
 # data nxp matrix of data
 # m is integer cross "threshold" value
 # Sigma is null hypothesis covariance matrix
-#' Title
+#' The Cross U-Statistic for Variance Testing
 #'
-#' @param data
-#' @param m
-#' @param Sigma
+#' @param data \eqn{n \times p} matrix of data.
+#' @param m Cross threshold value. Should be between 3 and \eqn{n}.
+#' @param Sigma Symmetric, positive semi-definite matrix to serve as the null hypothesis
 #'
-#' @returns
+#' @returns The Cross U-Statistic for Variance Testing defined as \deqn{
+#' \widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\sum_{l_1,l_2 = 1}^p\frac{1}{4}[(X_{i_1,l_1} - X_{i_2,l_1})&(X_{i_1,l_2} - X_{i_2,l_2}) - 2\Sigma_0(l_1,l_2)]\\ &\cdot [(X_{i_3,l_1} - X_{j,l_1})(X_{i_3,l_2} - X_{j,l_2}) - 2\Sigma_0(l_1,l_2)].
+#' }
 #' @export
 #'
 #' @examples
+#' set.seed(12)
+#' # Generate Data
+#' data <- matrix(rnorm(100 * 2), 100, 2)
+#' # Calculate U-Statistic
+#' crossUStatVar(data, 50, diag(2))
 crossUStatVar <- function(data, m, Sigma) {
 
   data <- as.matrix(data)
@@ -34,10 +41,10 @@ crossUStatVar <- function(data, m, Sigma) {
     stop(paste("Sigma should be of dimension", p, 'x', p))
   }
   if (!isSymmetric(Sigma)) {
-    stop("Sigma must be a symmetrix, positive semi-definite matrix")
+    stop("Sigma must be a symmetric, positive semi-definite matrix")
   }
   if (all(eigen(Sigma)$values >= 0)) {
-    stop("Sigma must be a symmetrix, positive semi-definite matrix")
+    stop("Sigma must be a symmetric, positive semi-definite matrix")
   }
 
   return(tail(crossUStatVar_cum_c(data, m, Sigma), 1))
