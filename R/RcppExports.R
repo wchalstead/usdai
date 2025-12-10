@@ -9,3 +9,11 @@ crossUStatL4_cum_c <- function(X, m) {
     .Call(`_usdai_crossUStatL4_cum_c`, X, m)
 }
 
+crossUStatVar_cum_c <- function(X, m, Sigma) {
+    .Call(`_usdai_crossUStatVar_cum_c`, X, m, Sigma)
+}
+
+crossWStatVar_c <- function(X, m, Sigma) {
+    .Call(`_usdai_crossWStatVar_c`, X, m, Sigma)
+}
+
