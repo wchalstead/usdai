@@ -35,6 +35,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// crossWStatL4_c
+double crossWStatL4_c(const arma::mat& X, int m);
+RcppExport SEXP _usdai_crossWStatL4_c(SEXP XSEXP, SEXP mSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    rcpp_result_gen = Rcpp::wrap(crossWStatL4_c(X, m));
+    return rcpp_result_gen;
+END_RCPP
+}
 // crossUStatVar_cum_c
 arma::mat crossUStatVar_cum_c(const arma::mat& X, int m, const arma::mat& Sigma);
 RcppExport SEXP _usdai_crossUStatVar_cum_c(SEXP XSEXP, SEXP mSEXP, SEXP SigmaSEXP) {
@@ -65,6 +77,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_usdai_crossUStatL4_c", (DL_FUNC) &_usdai_crossUStatL4_c, 2},
     {"_usdai_crossUStatL4_cum_c", (DL_FUNC) &_usdai_crossUStatL4_cum_c, 2},
+    {"_usdai_crossWStatL4_c", (DL_FUNC) &_usdai_crossWStatL4_c, 2},
     {"_usdai_crossUStatVar_cum_c", (DL_FUNC) &_usdai_crossUStatVar_cum_c, 3},
     {"_usdai_crossWStatVar_c", (DL_FUNC) &_usdai_crossWStatVar_c, 3},
     {NULL, NULL, 0}
