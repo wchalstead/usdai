@@ -56,13 +56,32 @@ crossUStatVar <- function(data, m, Sigma) {
 #'
 #' @examples
 crossWStatVar <- function(data, m, Sigma){
+  data <- as.matrix(data)
+  Sigma <- as.matrix(Sigma)
   n <- nrow(data)
+  p <- ncol(data)
+  pSigma <- ncol(Sigma)
 
-  # Calculate cumulative stats
-  cumstats <- crossUStatVar_cum(data, m, Sigma)
-  theta <- cumstats[n-m]
+  # Check inputs
+  if (m > n) {
+    stop("m must be less than the number of rows in data")
+  }
+  if (m < 2) {
+    stop("m must be greater than or equal to 3")
+  }
+  if (m %% 1 != 0) {
+    stop("m must be an integer value")
+  }
+  if (p != pSigma) {
+    stop(paste("Sigma should be of dimension", p, 'x', p))
+  }
+  if (!isSymmetric(Sigma)) {
+    stop("Sigma must be a symmetrix, positive semi-definite matrix")
+  }
+  if (all(eigen(Sigma)$values >= 0)) {
+    stop("Sigma must be a symmetrix, positive semi-definite matrix")
+  }
 
-  # Calculate self-normalizer
-  V <- sum((cumstats - (((m+1):n) - m) * cumstats[n-m]/(n - m))^2) / (n - m)
-  return(theta^2/V)
+
+  return(crossWStatVar_c(data, m, Sigma))
 }
