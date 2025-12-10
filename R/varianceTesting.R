@@ -43,7 +43,7 @@ crossUStatVar <- function(data, m, Sigma) {
   if (!isSymmetric(Sigma)) {
     stop("Sigma must be a symmetric, positive semi-definite matrix")
   }
-  if (all(eigen(Sigma)$values >= 0)) {
+  if (!all(eigen(Sigma)$values >= 0)) {
     stop("Sigma must be a symmetric, positive semi-definite matrix")
   }
 
@@ -96,7 +96,7 @@ crossWStatVar <- function(data, m, Sigma){
   if (!isSymmetric(Sigma)) {
     stop("Sigma must be a symmetrix, positive semi-definite matrix")
   }
-  if (all(eigen(Sigma)$values >= 0)) {
+  if (!all(eigen(Sigma)$values >= 0)) {
     stop("Sigma must be a symmetrix, positive semi-definite matrix")
   }
 
