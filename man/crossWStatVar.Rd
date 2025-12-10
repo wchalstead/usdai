@@ -15,9 +15,9 @@ crossWStatVar(data, m, Sigma)
 }
 \value{
 The self-normalized cross U-Statistic for variance testing. The Cross U-Statistic for Variance Testing is defined as \deqn{
-\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\sum_{l_1,l_2 = 1}^p\frac{1}{4}[(X_{i_1,l_1} - X_{i_2,l_1})(X_{i_1,l_2} - X_{i_2,l_2}) - 2\Sigma_0(l_1,l_2)]\cdot [(X_{i_3,l_1} - X_{j,l_1})(X_{i_3,l_2} - X_{j,l_2}) - 2\Sigma_0(l_1,l_2)].
+\widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\sum_{l_1,l_2 = 1}^p\frac{1}{4}[(X_{i_1,l_1} - X_{i_2,l_1})(X_{i_1,l_2} - X_{i_2,l_2}) - 2\Sigma_0(l_1,l_2)] \\ \cdot [(X_{i_3,l_1} - X_{j,l_1})(X_{i_3,l_2} - X_{j,l_2}) - 2\Sigma_0(l_1,l_2)]
 ,} the self normalizer is given as \deqn{
-V_{(m+1):n} = \frac{1}{n-m}\sum_{k = m+1}^n\left(\widetilde \theta_{(m+1):k} - \frac{k-m}{n-m}\widetilde \theta_{(m+1):n}\right)^2.
+V_{(m+1):n} = \frac{1}{n-m}\sum_{k = m+1}^n\left(\widetilde \theta_{(m+1):k} - \frac{k-m}{n-m}\widetilde \theta_{(m+1):n}\right)^2
 ,} and the self normalized statistic is given as \deqn{
 W := \frac{\widetilde \theta_{(m+1):n}^2}{V_{(m+1):n}}
 .}
@@ -26,7 +26,7 @@ W := \frac{\widetilde \theta_{(m+1):n}^2}{V_{(m+1):n}}
 The Self-Normalized Cross U-Statistic for Variance Testing
 }
 \examples{
-#' set.seed(12)
+set.seed(12)
 # Generate Data
 data <- matrix(rnorm(100 * 2), 100, 2)
 # Calculate U-Statistic
