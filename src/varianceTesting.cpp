@@ -23,11 +23,11 @@ arma::mat crossUStatVar_cum_c(const arma::mat& X,
     for (int ii = 0; ii < p; ii++) {
       for (int jj = ii; jj < p; jj++) {
         if (ii == jj) {
-          A(l++, i) = accu(X(arma::span(0,i), ii) % X(arma::span(0,i), jj)) - X(i + 1, ii) * accu(X(arma::span(0,i), jj)) -
-            X(i + 1, jj) * accu(X(arma::span(0,i), ii)) + (i + 1) * X(i + 1, ii) * X(i + 1, jj) - (2 * (i + 1) * Sigma(ii, jj));
+          A(l++, i) = accu(X(arma::span(0, i), ii) % X(arma::span(0,i), jj)) - X(i + 1, ii) * accu(X(arma::span(0, i), jj)) -
+            X(i + 1, jj) * accu(X(arma::span(0, i), ii)) + (i + 1) * X(i + 1, ii) * X(i + 1, jj) - (2 * (i + 1) * Sigma(ii, jj));
         } else {
-          A(l++, i) = s2 * (accu(X(arma::span(0,i), ii) % X(arma::span(0,i), jj)) - X(i + 1, ii) * accu(X(arma::span(0,i), jj)) -
-            X(i + 1, jj) * accu(X(arma::span(0,i), ii)) + (i + 1) * X(i + 1, ii) * X(i + 1, jj) - (2 * (i + 1) * Sigma(ii, jj)));
+          A(l++, i) = s2 * (accu(X(arma::span(0, i), ii) % X(arma::span(0,i), jj)) - X(i + 1, ii) * accu(X(arma::span(0, i), jj)) -
+            X(i + 1, jj) * accu(X(arma::span(0, i), ii)) + (i + 1) * X(i + 1, ii) * X(i + 1, jj) - (2 * (i + 1) * Sigma(ii, jj)));
         }
       }
     }
