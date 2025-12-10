@@ -48,3 +48,25 @@ arma::vec crossUStatL4_cum_c(const arma::mat& X,
 
   return cumsum(dot_vals);
 }
+
+
+// [[Rcpp::export]]
+double crossWStatL4_c(const arma::mat& X,
+                      int m){
+
+  // Number of rows
+  double n = X.n_rows;
+
+  // Calculate col vector of cumulative stats
+  arma::vec cumulatives = crossUStatL4_cum_c(X, m);
+
+  // Theta_{(m+1) : n} estimate
+  double theta = cumulatives(n - m - 1);
+
+  // Normalizer estimate
+  double normalizer = accu(pow(cumulatives - theta * arma::regspace(1, n - m)/(n - m), 2)) / (n - m);
+
+
+  // W test statistic
+  return pow(theta, 2) / normalizer;
+}
