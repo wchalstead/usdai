@@ -46,6 +46,7 @@ rcrossW <- function(n, p = 200) {
   # Add one to adjust for numerator generation
   p <- p + 1
 
+  # Simulated generation
   Z <- matrix(rnorm(n * p), n, p)
   Z0 <- Z[ , 1]
   lambda <- matrix((pi * 1:(p - 1)), n, (p - 1), byrow = T)
