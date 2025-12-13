@@ -1,3 +1,14 @@
+#' Approximate Cross W Distribution Quantiles
+#'
+#' @param p Vector of probabilities
+#'
+#' @returns Approximate quantile of the distribution based on \eqn{1e6} simulations of the random variable defined as
+#' \deqn{
+#' W:=\frac{{B(1)^2}}{\int_{0}^1(B(r) - rB(1))^2dr}
+#' }
+#' @export
+#'
+#' @examples
 qcrossW <- function(p){
   # Check input of p
   if( any(p > 1) | any(p < 0)){
@@ -21,6 +32,17 @@ qcrossW <- function(p){
   return(results)
 }
 
+#' Approximate Cross W Distribution Probabilities
+#'
+#' @param q vector of quantiles
+#'
+#' @returns Empirical CDF of the distribution based on \eqn{1e6} simulations of the random variable defined as
+#' \deqn{
+#' W:=\frac{{B(1)^2}}{\int_{0}^1(B(r) - rB(1))^2dr}
+#' }
+#' @export
+#'
+#' @examples
 pcrossW <- function(q){
   # Check input
   if(!is.numeric(p)) {
@@ -34,6 +56,15 @@ pcrossW <- function(q){
   )
 }
 
+#' Title
+#'
+#' @param n
+#' @param p
+#'
+#' @returns
+#' @export
+#'
+#' @examples
 rcrossW <- function(n, p = 200) {
   # Check inputs
   if(!is.numeric(n) || (n %% 1 != 0) ){
