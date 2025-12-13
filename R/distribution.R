@@ -9,9 +9,11 @@
 #' @export
 #'
 #' @examples
-#' p <- seq(0, 200, length.out = 1e4)
+#' require(graphics)
+#'
+#' p <- seq(0, 1, length.out = 1e3)
 #' q <- qcrossW(p)
-#' plot(p, q)
+#' plot(p, q, type = 'l')
 qcrossW <- function(p){
   # Check input of p
   if( any(p > 1) | any(p < 0)){
@@ -46,6 +48,9 @@ qcrossW <- function(p){
 #' @export
 #'
 #' @examples
+#' require(graphics)
+#'
+#'
 pcrossW <- function(q){
   # Check input
   if(!is.numeric(p)) {
