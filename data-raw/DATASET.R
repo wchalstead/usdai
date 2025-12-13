@@ -12,7 +12,7 @@ p <- 201
 Z <- matrix(rnorm(n * p), n, p)
 Z0 <- Z[ , 1]
 lambda <- matrix((pi * 1:(p - 1)), n, (p - 1), byrow = T)
-Q <- rowSums((Z[ , -1] / lambda)^2) + 0.00051 # Add approximate expected remainder to reduce bias
+Q <- rowSums((Z[ , -1] / lambda)^2)
 DATASET <- Z0^2/Q
 
 # Sort DATASET-- this gives an easy way to calculate dCrossW later

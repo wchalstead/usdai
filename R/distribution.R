@@ -55,3 +55,17 @@ rcrossW <- function(n, p = 200) {
 
   return(results)
 }
+
+dcrossW <- function(x) {
+  # Check input
+  if(!is.numeric(x)) {
+    stop('x must be numeric')
+  }
+
+  dens.func(x)
+}
+
+
+# Basic density function approximation
+dens = density(DATASET, n = 1e6)
+dens.func = approxfun(dens)
