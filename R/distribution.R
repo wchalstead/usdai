@@ -114,6 +114,11 @@ rcrossW <- function(n, p = 200) {
 #' @export
 #'
 #' @examples
+#' require(graphics)
+#'
+#' x<- seq(0, 1, length.out = 1e3)
+#' q <- dcrossW(x)
+#' plot(x, q, type = 'l')
 dcrossW <- function(x) {
   # Check input
   if(!is.numeric(x)) {
