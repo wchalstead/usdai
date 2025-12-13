@@ -32,9 +32,9 @@ qcrossW <- function(p){
   return(results)
 }
 
-#' Approximate Cross W Distribution Probabilities
+#' Empirical CDF of Cross W Statistic
 #'
-#' @param q vector of quantiles
+#' @param q Vector of quantiles
 #'
 #' @returns Empirical CDF of the distribution based on \eqn{1e6} simulations of the random variable defined as
 #' \deqn{
@@ -56,12 +56,19 @@ pcrossW <- function(q){
   )
 }
 
-#' Title
+#' Approximate random generation of Cross W random variables
 #'
-#' @param n
-#' @param p
+#' @param n Number of observations
+#' @param p Number of independent random variables to use per observation. A larger number will give higher precision but larger computation times.
 #'
-#' @returns
+#' @returns A vector of random variables approximately from the distribution
+#' \deqn{
+#' W:=\frac{{B(1)^2}}{\int_{0}^1(B(r) - rB(1))^2dr}
+#' }.
+#' Random variables are generated using the KL expansion of the Brownian bridge.
+#' \deqn{
+#' W = \frac{Z_0}{\sqrt{\sum_{k=1}^{p} \frac{Z_k^2}{(\pi k)^2}}}
+#' } where \eqn{Z_k} are i.i.d. standard normal random variables.
 #' @export
 #'
 #' @examples
