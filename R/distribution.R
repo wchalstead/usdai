@@ -51,7 +51,7 @@ rcrossW <- function(n, p = 200) {
   Z0 <- Z[ , 1]
   lambda <- matrix((pi * 1:(p - 1)), n, (p - 1), byrow = T)
   Q <- rowSums((Z[ , -1] / lambda)^2)
-  results <- Z0^2/Q
+  results <- Z0^2 / Q
 
   return(results)
 }
