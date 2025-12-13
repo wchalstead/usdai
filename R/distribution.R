@@ -94,6 +94,17 @@ rcrossW <- function(n, p = 200) {
   return(results)
 }
 
+#' Approximate Density of Cross W Distribution
+#'
+#' @param x Vector of quantiles.
+#'
+#' @returns Approximate kernel density estimate of the distribution based on \eqn{1e6} simulations of the random variable defined as
+#' \deqn{
+#' W:=\frac{{B(1)^2}}{\int_{0}^1(B(r) - rB(1))^2dr}
+#' }
+#' @export
+#'
+#' @examples
 dcrossW <- function(x) {
   # Check input
   if(!is.numeric(x)) {
