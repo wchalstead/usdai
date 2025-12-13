@@ -3,6 +3,9 @@ qcrossW <- function(p){
   if( any(p > 1) | any(p < 0)){
     stop("p must be in [0, 1]")
   }
+  if(!is.numeric(p)) {
+    stop('p must be numeric')
+  }
 
   # Return vectorized list of quantile values
   results <- sapply(p, \(p) {
@@ -16,4 +19,17 @@ qcrossW <- function(p){
   )
 
   return(results)
+}
+
+pcrossW <- function(q){
+  # Check input
+  if(!is.numeric(p)) {
+    stop('q must be numeric')
+  }
+
+  # Return vectorized list of empirical cdf values
+  results <- sapply(q, \(q) {
+    mean(q > DATASET)
+  }
+  )
 }
