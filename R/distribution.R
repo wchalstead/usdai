@@ -24,15 +24,9 @@ qcrossW <- function(p){
   }
 
   # Return vectorized list of quantile values
-  results <- sapply(p, \(p) {
-    if(p == 1){
-      return(Inf)
-    } else if (p == 0) {
-      return(0)
-    } else {
-    return(quantile(DATASET, p, names = FALSE))
-    }}
-  )
+  results <- quantile(DATASET, p, names = FALSE)
+  results[p == 0] <- 0
+  results[p == 1] <- Inf
 
   return(results)
 }
