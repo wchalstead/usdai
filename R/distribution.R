@@ -79,9 +79,8 @@ pcrossW <- function(q){
 #' require(graphics)
 #'
 #' set.seed(1213530)
-#'
-#' W <- rcrossW(100)
-#' density(W)
+#' W <- rcrossW(1000)
+#' plot(density(W))
 rcrossW <- function(n, p = 200) {
   # Check inputs
   if(!is.numeric(n) || (n %% 1 != 0) ){
