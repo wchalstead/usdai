@@ -9,6 +9,9 @@
 #' @export
 #'
 #' @examples
+#' p <- seq(0, 200, length.out = 1e4)
+#' q <- qcrossW(p)
+#' plot(p, q)
 qcrossW <- function(p){
   # Check input of p
   if( any(p > 1) | any(p < 0)){
