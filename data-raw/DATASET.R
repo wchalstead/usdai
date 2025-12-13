@@ -15,6 +15,9 @@ lambda <- matrix((pi * 1:(p - 1)), n, (p - 1), byrow = T)
 Q <- rowSums((Z[ , -1] / lambda)^2) + 0.00051 # Add approximate expected remainder to reduce bias
 DATASET <- Z0^2/Q
 
+# Sort DATASET-- this gives an easy way to calculate dCrossW later
+DATASET <- sort(DATASET)
+
 # Remove extraneous things from memory
 rm(lambda, Z, n, Q, Z0, p)
 
