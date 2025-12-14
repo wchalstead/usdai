@@ -58,9 +58,9 @@ crossUStatL4 <- function(data, m) {
 #' @returns The self-normalized cross U-Statistic for the \eqn{\ell_4}-norm
 #' The cross U-Statistic is given as \deqn{
 #' \widetilde \theta_{(m+1):k} = \sum_{1 \leq i_1,...,i_{3} \leq m}^{*}\sum_{j = m+1}^k\left(\sum_{l = 1}^pX_{i_1,l}X_{i_2,l}X_{i_{3},l}X_{j,l}\right)
-#' }, the self normalizer is given as \deqn{
+#' ,} the self normalizer is given as \deqn{
 #' V_{(m+1):n} = \frac{1}{n-m}\sum_{k = m+1}^n\left(\widetilde \theta_{(m+1):k} - \frac{k-m}{n-m}\widetilde \theta_{(m+1):n}\right)^2.
-#' }, and the self normalized statistic is given as \deqn{
+#' ,} and the self normalized statistic is given as \deqn{
 #' W := \frac{\widetilde \theta_{(m+1):n}^2}{V_{(m+1):n}}
 #' }
 #' @export
