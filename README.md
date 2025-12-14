@@ -30,34 +30,70 @@ You can install the development version of usdai from
 devtools::install_github("wchalstead/usdai")
 ```
 
-## To-Do
-
-I would like to move my current code to C++ to improve the computation
-time while implementing basic tests to make sure that my computations
-are still correct as I transfer my code over. Another priority is
-finishing all of the documentation for my exported functions. A final
-thing that I would like to add is a function to simulate random
-variables from the asymptotic distribution, but I will likely need to do
-some testing to decide if it is more efficient to try and generate these
-by generating a uniform random variable on (0, 1) and passing this as a
-function to some pre-computed set of quantiles or finding a way to
-efficiently integrate over a random process.
-
 ## Example
 
-To-Do: Expand on this once all other functions are fully implemented.
-This is a basic example which shows you how to solve a common problem:
+The usdai gives methods for dimension agnostic hypothesis testing.
 
 ``` r
 library(usdai)
-## basic example code
-set.seed(12)
-# Generate Data
-data <- matrix(rnorm(100 * 2), 100, 2)
-# Calculate U-Statistic
-crossUStatL4(data, 50)
-#> [1] 346.6365
 ```
+
+Consider a situation in which we have $`100`$ realizations of a
+multivariate normal vector in $`\mathbb{R}^{10}`$, and we want to test
+whether $`\mu = 0`$. This is equivalent to testing that the $`\ell_4`$
+norm of the vector $`\mu`$ is zero.
+
+We can perform such a test as follows:
+
+First, we generate data with true mean $`\mu = 0`$
+
+``` r
+set.seed(1232)
+# Generate Data
+data <- matrix(rnorm(200 * 10), 200, 10)
+```
+
+And we can use the `crossWStatL4` function to get a test statistic, and
+a p-value can be recovered using the `pcrossW` which approximates the
+CDF of the asymptotic distribution.
+
+``` r
+W.test <- crossWStatL4(data, 100)
+pval <- 1 - pcrossW(W.test)
+paste(pval)
+#> [1] "0.555922"
+```
+
+With a large p-value as above, we fail to reject the null hypothesis
+that $`\mu = 0`$.
+
+Now consider a situation with true mean $`\mu = 0.2`$
+
+``` r
+set.seed(1213)
+# Generate Data
+data <- matrix(rnorm(200 * 10, mean = 0.2), 200, 10)
+```
+
+And we can use the `crossWStatL4` function to get a test statistic, and
+a p-value can be recovered using the `pcrossW` which approximates the
+CDF of the asymptotic distribution.
+
+``` r
+W.test <- crossWStatL4(data, 100)
+pval <- 1 - pcrossW(W.test)
+paste(pval)
+#> [1] "0.015059"
+```
+
+With the small p-value as above, we reject the null hypothesis
+$`\mu = 0`$.
+
+Beyond this mean testing example above, the usdai package also includes
+functions such as `crossWStatL4` that allow for variance testing as
+well. Additionally, the functions `qcrossW`, `pcrossW`, `rcrossW`, and
+`dcrossW` allow for quantile, distribution and random generation of the
+asymptotic testing distribution.
 
 ## References
 

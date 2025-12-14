@@ -88,5 +88,5 @@ crossWStatL4 <- function(data, m){
     stop("m must be an integer value")
   }
 
-  return(crossUStatL4_cum_c(data, m))
+  return(crossWStatL4_c(data, m))
 }

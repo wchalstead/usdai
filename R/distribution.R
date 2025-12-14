@@ -49,7 +49,7 @@ qcrossW <- function(p){
 #' plot(q, p, type = 'l')
 pcrossW <- function(q){
   # Check input
-  if(!is.numeric(p)) {
+  if(!is.numeric(q)) {
     stop('q must be numeric')
   }
 
@@ -58,6 +58,8 @@ pcrossW <- function(q){
     mean(q > DATASET)
   }
   )
+
+  return(results)
 }
 
 #' Approximate random generation of Cross W random variables
