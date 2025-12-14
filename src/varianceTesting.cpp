@@ -51,9 +51,11 @@ arma::mat crossUStatVar_cum_c(const arma::mat& X,
     for (int ii = 0; ii < p; ii++) {
       for (int jj = ii; jj < p; jj++) {
         if (ii == jj) {
-          B(k++, (m - 2) - 1) = difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj));
+          B(k, (m - 2) - 1) = difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj));
+          k++;
         } else {
-          B(k++, (m - 2) - 1) =  s2 *  (difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj)));
+          B(k, (m - 2) - 1) =  s2 *  (difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj)));
+          k++;
         }
       }
     }
@@ -68,9 +70,11 @@ arma::mat crossUStatVar_cum_c(const arma::mat& X,
       for (int ii = 0; ii < p; ii++) {
         for (int jj = ii; jj < p; jj++) {
           if (ii == jj) {
-            B(k++, i) = B(k, i + 1) + difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj));
+            B(k, i) = B(k, i + 1) + difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj));
+            k++;
           } else {
-            B(k++, i) = B(k, i + 1) + s2 * (difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj)));
+            B(k, i) = B(k, i + 1) + s2 * (difference_vec(ii) * difference_vec(jj) - (2 * Sigma(ii, jj)));
+            k++;
           }
         }
       }
