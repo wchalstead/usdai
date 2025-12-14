@@ -125,10 +125,7 @@ dcrossW <- function(x) {
     stop('x must be numeric')
   }
 
+  dens <- density(DATASET, n = 1e6)
+  dens.func <- approxfun(dens)
   dens.func(x)
 }
-
-
-# Basic density function approximation
-dens = density(DATASET, n = 1e6)
-dens.func = approxfun(dens)
