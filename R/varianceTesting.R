@@ -47,7 +47,7 @@ crossUStatVar <- function(data, m, Sigma) {
     stop("Sigma must be a symmetric, positive semi-definite matrix")
   }
 
-  return(tail(crossUStatVar_cum_c(data, m, Sigma), 1))
+  return(utils::tail(crossUStatVar_cum_c(data, m, Sigma), 1))
 }
 
 

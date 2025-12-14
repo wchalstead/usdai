@@ -24,7 +24,7 @@ qcrossW <- function(p){
   }
 
   # Return vectorized list of quantile values
-  results <- quantile(DATASET, p, names = FALSE)
+  results <- stats::quantile(DATASET, p, names = FALSE)
   results[p == 0] <- 0
   results[p == 1] <- Inf
 
@@ -96,7 +96,7 @@ rcrossW <- function(n, p = 200) {
   p <- p + 1
 
   # Simulated generation
-  Z <- matrix(rnorm(n * p), n, p)
+  Z <- matrix(stats::rnorm(n * p), n, p)
   Z0 <- Z[ , 1]
   lambda <- matrix((pi * 1:(p - 1)), n, (p - 1), byrow = T)
   Q <- rowSums((Z[ , -1] / lambda)^2)
@@ -127,7 +127,7 @@ dcrossW <- function(x) {
     stop('x must be numeric')
   }
 
-  dens <- density(DATASET, n = 1e6)
-  dens.func <- approxfun(dens)
+  dens <- stats::density(DATASET, n = 1e6)
+  dens.func <- stats::approxfun(dens)
   dens.func(x)
 }
